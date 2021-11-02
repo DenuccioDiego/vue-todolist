@@ -8,9 +8,13 @@ var app = new Vue({
                "mangiare",
           ],
           newTask:"",
-
+          error: false,
      },
      methods:  {
+
+          
+
+          
 
           removeTask(i){
              console.log("cliccato rimuovi"),
@@ -18,8 +22,16 @@ var app = new Vue({
           },
 
           addTask(){
-               console.log("aggiungo")
-               this.tasks.push(this.newTask)
+               
+               if(this.newTask.length > 5){
+                    this.tasks.push(this.newTask)
+                    this.error = false
+                   console.log(this.tasks)
+               }
+               else{
+                    this.error = true
+               }
+               
           }
 
      }

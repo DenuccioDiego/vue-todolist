@@ -15,14 +15,27 @@
           <div>
                <input type="text" v-model="newTask" @keyup.enter="addTask">
                <button @click="addTask" >ADD</button>
+               <div v-show="error">ERRORE devi inserire una task</div>
           </div>
 
-          <div v-for="(task, index) in tasks" >
-               <div> {{task}} </div>
-               
-               <div>
-                    <i @click="removeTask(index)" class="fas fa-trash-alt"></i>
+          <div v-if="tasks.length > 0"> 
+
+               <div v-for="(task, index) in tasks" >
+                    <div> 
+                         {{task}} 
+     
+                    </div>
+     
+                    <div>
+                         <i @click="removeTask(index)" class="fas fa-trash-alt"></i>
+                    </div>
                </div>
+
+          </div>
+          
+
+          <div v-else>   
+               <p>Nulla da fare</p>
           </div>
 
 
