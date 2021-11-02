@@ -21,12 +21,13 @@
           <div v-if="tasks.length > 0"> 
 
                <div v-for="(task, index) in tasks">
-                    <div type="text" v-show="nascondi"> 
-                         {{task}} 
-                         
+                    <div type="text"> 
+                         <span v-show="!editMode" v-on:click="changeTask">{{task}}</span>
+                          
+                         <input v-on:keyup.enter="saveChange" v-model="tasks[index]" v-show="editMode">
                     </div>
 
-                    <input type="text" v-model="tasks[index]" v-show="mostra">
+                    
                     
                     <div>
                          

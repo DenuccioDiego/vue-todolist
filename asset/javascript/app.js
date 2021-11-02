@@ -9,8 +9,8 @@ var app = new Vue({
           ],
           newTask:"",
           error: false,
-          mostra: false,
-          nascondi: true,
+          editMode: false,
+          
      },
 
      methods:  {
@@ -34,20 +34,18 @@ var app = new Vue({
                this.newTask = ""
           },
 
-          changeTask(i){
+          changeTask(){
                //console.log(this.tasks[i])
-               if(this.mostra = true ){
-                    this.nascondi = false
-                    this.mostra = true 
-                    console.log(this.mostra)
-               }
-               else if(this.nascondi = false){
-                    this.nascondi = true
-                    this.mostra = false
-                    console.log(this.nascondi)
-               }
                
-          }
+               this.editMode = true 
+               
+          },
+
+          saveChange(){
+
+               this.editMode = false
+          },
+
      }
      
 })
