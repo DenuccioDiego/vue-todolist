@@ -20,12 +20,19 @@
 
           <div v-if="tasks.length > 0"> 
 
-               <div v-for="(task, index) in tasks" >
-                    <div> 
+               <div v-for="(task, index) in tasks">
+                    <div type="text" v-show="nascondi"> 
                          {{task}} 
-     
+                         
                     </div>
-     
+
+                    <input type="text" v-model="tasks[index]" v-show="mostra">
+                    
+                    <div>
+                         
+                         <i @click="changeTask(index)" class="fas fa-file-alt"></i>
+                    </div>
+
                     <div>
                          <i @click="removeTask(index)" class="fas fa-trash-alt"></i>
                     </div>
