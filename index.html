@@ -12,7 +12,26 @@
 <body>
      
      <div id="app">
-          {{ message }}
+          <div>
+               <input type="text" v-model="newTask" @keyup.enter="addTask">
+               <button @click="addTask" >ADD</button>
+          </div>
+
+          <div v-for="(task, index) in tasks" >
+               <div> {{task}} </div>
+               <div><i class="fas fa-trash-alt"></i></div>
+          </div>
+
+
+
+
+
+
+
+
+
+
+
      </div>
 
      <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
