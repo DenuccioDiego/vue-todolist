@@ -19,7 +19,10 @@
 
           <div v-for="(task, index) in tasks" >
                <div> {{task}} </div>
-               <div><i class="fas fa-trash-alt"></i></div>
+               
+               <div>
+                    <i @click="removeTask(index)" class="fas fa-trash-alt"></i>
+               </div>
           </div>
 
 

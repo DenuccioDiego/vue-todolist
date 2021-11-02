@@ -12,8 +12,9 @@ var app = new Vue({
      },
      methods:  {
 
-          removeTask(){
-               
+          removeTask(i){
+             console.log("cliccato rimuovi"),
+             this.tasks.splice(i, 1) 
           },
 
           addTask(){
@@ -24,3 +25,23 @@ var app = new Vue({
      }
      
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
