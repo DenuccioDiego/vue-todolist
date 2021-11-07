@@ -3,30 +3,38 @@ var app = new Vue({
      data: {
           message: 'Hello Vue!',
           tasks : [
-               "fare la spesa",
-               "studiare",
-               "mangiare",
+          {
+               text : "fare la spesa",
+               editMode: false,
+          },
+          {
+               text: "studiare",
+               editMode: false,
+          },
+          {
+               text: "mangiare",
+               editMode: false,
+          },
           ],
+
           newTask:"",
           error: false,
-          editMode: false,
-          
      },
 
      methods:  {
 
-
           removeTask(i){
-             //console.log("cliccato rimuovi"),
              this.tasks.splice(i, 1) 
           },
 
           addTask(){
                
                if(this.newTask.length > 5){
-                    this.tasks.push(this.newTask)
+                    this.tasks.push({
+                         text : this.newTask,
+                         editMode: false,
+                    })
                     this.error = false
-                    //console.log(this.tasks)
                }
                else{
                     this.error = true
@@ -34,22 +42,17 @@ var app = new Vue({
                this.newTask = ""
           },
 
-          changeTask(){
-               //console.log(this.tasks[i])
-               
-               this.editMode = true 
-               
+          changeTask(i){
+               this.tasks[i].editMode = true
           },
 
-          saveChange(){
-
-               this.editMode = false
+          saveChange(i){
+               this.tasks[i].editMode = false
           },
 
      }
      
 })
-
 
 
 

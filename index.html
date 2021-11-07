@@ -21,16 +21,15 @@
           <div v-if="tasks.length > 0"> 
 
                <div v-for="(task, index) in tasks">
-                    <div type="text"> 
-                         <span v-show="!editMode" v-on:click="changeTask">{{task}}</span>
-                          
-                         <input v-on:keyup.enter="saveChange" v-model="tasks[index]" v-show="editMode">
+                    <div type="text">  
+                         <span v-show="!task.editMode" v-on:click="changeTask(index)">{{task.text}}</span>
+     
+                         <input v-on:keyup.enter="saveChange(index)" v-model="tasks[index].text" v-show="task.editMode" >
+                         
                     </div>
 
-                    
-                    
+                                       
                     <div>
-                         
                          <i @click="changeTask(index)" class="fas fa-file-alt"></i>
                     </div>
 
