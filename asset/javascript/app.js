@@ -17,6 +17,10 @@ var app = new Vue({
           },
           ],
 
+          completedTasks:[],
+
+          trashedTasks:[],
+
           newTask:"",
           error: false,
      },
@@ -50,10 +54,35 @@ var app = new Vue({
                this.tasks[i].editMode = false
           },
 
+          completeTask(i){   
+               this.completedTasks.push(this.tasks[i])
+               this.tasks.splice(i, 1)
+               console.log(this.completedTasks)
+               console.log(this.tasks)
+          },
+
+          trashTask(i){
+               this.trashedTasks.push(this.tasks[i])
+               this.tasks.splice(i, 1)
+          },
+
+          restoreTaskCompleted(i){
+               this.tasks.push(this.completedTasks[i])
+               this.completedTasks.splice(i, 1)
+          },
+
+          restoreTaskTrashed(i){
+               this.tasks.push(this.trashedTasks[i])
+               this.trashedTasks.splice(i, 1)
+          },
+
+          deleteTrash(){
+               this.trashedTasks = []
+          },
+
      }
      
 })
-
 
 
 

@@ -12,49 +12,117 @@
 <body>
      
      <div id="app">
-          <div>
-               <input type="text" v-model="newTask" @keyup.enter="addTask">
-               <button @click="addTask" >ADD</button>
-               <div v-show="error">ERRORE devi inserire una task</div>
-          </div>
 
-          <div v-if="tasks.length > 0"> 
+          <div id="container" class="container">
 
-               <div v-for="(task, index) in tasks">
-                    <div type="text">  
-                         <span v-show="!task.editMode" v-on:click="changeTask(index)">{{task.text}}</span>
+               <div class="text-center pt-5">
+                    <img class="mb-4" src="./asset/img/logo.png"  alt="logo">
+
+                    <div class="pb-5 fs-4">
+                         <input class="border-0 rounded-3 py-1 " type="text" v-model="newTask" @keyup.enter="addTask">
+                         <button class="border-0 rounded-3 py-1 px-2" @click="addTask">
+                              ADD
+                         </button>
+                         <div v-show="error">
+                              ERRORE devi inserire una task con 6 caratteri
+                         </div>
+                    </div>
+
+                    <div class="row gap-3">
+
+                         <div class="col bg-light rounded-3 text-start" > 
+
+                              <h2 class="fst-italic">
+                                   TODO LIST
+                              </h2>
+
+                              <div class="g-2 bg_task my-1 rounded-3 row" v-for="(task, index) in tasks" v-if="tasks.length > 0">
      
-                         <input v-on:keyup.enter="saveChange(index)" v-model="tasks[index].text" v-show="task.editMode" >
-                         
-                    </div>
+                                   <div class="row g-2 fs-4 p-2" type="text"> 
 
+                                        <span class="col-9" v-show="!task.editMode" v-on:click="changeTask(index)">
+                                             {{task.text}}
+                                        </span>
+     
+                                        <input class="border-0 col-9" v-on:keyup.enter="saveChange(index)" v-model="tasks[index].text" v-show="task.editMode" >
                                        
-                    <div>
-                         <i @click="changeTask(index)" class="fas fa-file-alt"></i>
-                    </div>
-
-                    <div>
-                         <i @click="removeTask(index)" class="fas fa-trash-alt"></i>
-                    </div>
-               </div>
-
-          </div>
+                                        <div class="col-1 fs-3">
+                                             <i @click="changeTask(index)" class="fas fa-file-alt"></i>
+                                        </div>
           
+                                        <div class="col-1 fs-3">
+                                             <i @click="trashTask(index)" class="fas fa-trash-alt"></i>
+                                        </div>
+                                        
+                                        <div class="col-1 fs-3">
+                                             <i @click="completeTask(index)" class="fas fa-check-circle"></i>
+                                        </div>
 
-          <div v-else>   
-               <p>Nulla da fare</p>
-          </div>
+                                   </div>
+                             
+                              </div>
 
+                              <div v-if="tasks.length <= 0">   
+                                   <p class="fs-2">Tutte le task complete</p>
+                              </div>
 
+                         </div>
+               
+                         <div class="col bg-light rounded-3 text-start" v-if="completedTasks.length > 0"> 
 
+                              <h2 class="fst-italic">
+                                   TASKS COMPLETED
+                              </h2>
 
+                              <div class="g-2 bg_task my-1 rounded-3 row" v-for="(task, index) in completedTasks">
+     
+                                   <div class="row g-2 fs-4 p-2" type="text"> 
 
+                                        <span class="col-9">
+                                             {{task.text}}
+                                        </span>
+     
+                                        <div class="col-1 fs-3">
+                                             <i @click="restoreTaskCompleted(index)" class="fas fa-undo"></i>
+                                        </div>
 
+                                   </div>
+                             
+                              </div>
 
+                         </div>
 
+                         <div class="col bg-light rounded-3 text-start" v-if="trashedTasks.length > 0"> 
 
+                              <h2 class="fst-italic">
+                                   TASKS TRASHED
+                                   <i @click="deleteTrash" class="fas fa-recycle ms-5"></i>
+                              </h2>
 
+                              <div class="g-2 bg_task my-1 rounded-3 row" v-for="(task, index) in trashedTasks" v-if="trashedTasks.length > 0">
+     
+                                   <div class="row g-2 fs-4 p-2" type="text"> 
 
+                                        <span class="col-9">
+                                             {{task.text}}
+                                        </span>
+     
+                                        <div class="col-1 fs-3">
+                                             <i @click="restoreTaskTrashed(index)" class="fas fa-trash-restore"></i>
+                                        </div>
+
+                                   </div>
+                             
+                              </div>
+
+                         </div>
+
+                    </div>
+                    
+               </div>           
+
+          </div>     
+          
      </div>
 
      <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>

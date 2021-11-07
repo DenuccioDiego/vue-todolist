@@ -1,7 +1,15 @@
 #app{
-     background-color: bisque;
+     background-color: #b0c4de;
+     height: 100vh;
 }
 
+img{
+     height: 7rem;
+}
+
+.bg_task{
+     background-color: #d3d3d3;
+}
 
 
 
